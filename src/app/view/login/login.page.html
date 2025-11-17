@@ -1,0 +1,77 @@
+<ion-content class="ion-padding">
+  <div class="login-container">
+    <div class="header">
+      <h1>Bem-vindo</h1>
+      <p>Faça login para continuar</p>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" class="login-form">
+      <ion-item class="form-item">
+        <ion-label position="stacked">E-mail</ion-label>
+        <ion-input
+          type="email"
+          [(ngModel)]="credentials.email"
+          name="email"
+          placeholder="seu@email.com"
+          required
+          class="custom-input">
+        </ion-input>
+      </ion-item>
+
+      <ion-item class="form-item">
+        <ion-label position="stacked">Senha</ion-label>
+        <ion-input
+          [type]="showPassword ? 'text' : 'password'"
+          [(ngModel)]="credentials.password"
+          name="password"
+          placeholder="Sua senha"
+          required
+          class="custom-input">
+        </ion-input>
+        <ion-button
+          fill="clear"
+          slot="end"
+          (click)="togglePasswordVisibility()"
+          class="password-toggle">
+          <ion-icon 
+            [name]="showPassword ? 'eye-off-outline' : 'eye-outline'">
+          </ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <ion-button
+        type="submit"
+        expand="block"
+        [disabled]="isLoading"
+        class="login-button">
+        <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+        <span *ngIf="!isLoading">Entrar</span>
+      </ion-button>
+    </form>
+
+    <!-- Mensagem de erro -->
+    <div *ngIf="errorMessage" class="error-message">
+      <ion-icon name="warning-outline"></ion-icon>
+      <span>{{ errorMessage }}</span>
+    </div>
+
+    <!-- Links adicionais -->
+    <div class="links-container">
+      <a 
+        href="#" 
+        class="link" 
+        (click)="$event.preventDefault(); forgotPassword()">
+        <ion-icon name="key-outline"></ion-icon>
+        Esqueci minha senha
+      </a>
+      
+      <a 
+        href="#" 
+        class="link" 
+        (click)="$event.preventDefault(); createAccount()">
+        <ion-icon name="person-add-outline"></ion-icon>
+        Criar nova conta
+      </a>
+    </div>
+  </div>
+</ion-content>

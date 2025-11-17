@@ -1,0 +1,106 @@
+.user-welcome {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--ion-color-light);
+  border-radius: 12px;
+
+  h2 {
+    color: var(--ion-color-primary);
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+  }
+
+  p {
+    color: var(--ion-color-medium);
+    margin: 0;
+    font-size: 0.9rem;
+  }
+}
+
+.add-btn {
+  margin-bottom: 1.5rem;
+  --border-radius: 12px;
+  height: 50px;
+  font-weight: 600;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: var(--ion-color-medium);
+
+  ion-spinner {
+    margin-bottom: 1rem;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.music-count {
+  text-align: center;
+  margin-bottom: 1rem;
+  
+  p {
+    color: var(--ion-color-medium);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+}
+
+.music-item {
+  --border-radius: 8px;
+  margin-bottom: 0.5rem;
+  --padding-start: 16px;
+  --padding-end: 8px;
+  --inner-padding-end: 0;
+
+  ion-label {
+    h2 {
+      font-weight: 600;
+      color: var(--ion-color-dark);
+      margin-bottom: 4px;
+    }
+
+    p {
+      margin: 2px 0;
+      font-size: 0.85rem;
+      color: var(--ion-color-medium);
+      
+      strong {
+        color: var(--ion-color-dark);
+      }
+    }
+  }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--ion-color-medium);
+
+  .empty-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: var(--ion-color-light);
+  }
+
+  h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--ion-color-dark);
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+}
+
+/* Estilo para os botões de ação */
+ion-button[fill="clear"] {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  margin: 0 2px;
+}

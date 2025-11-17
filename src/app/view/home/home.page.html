@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Minha Playlist</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <!-- Saudação do usuário -->
+  <div class="user-welcome" *ngIf="usuarioLogado">
+    <h2>Olá, {{ usuarioLogado.nome }}! 👋</h2>
+    <p>Gerencie sua playlist de músicas favoritas</p>
+  </div>
+
+  <!-- Botão para adicionar música -->
+  <ion-button expand="block" color="primary" (click)="irParaCadastrar()" class="add-btn">
+    <ion-icon name="add" slot="start"></ion-icon>
+    Adicionar Nova Música
+  </ion-button>
+
+  <!-- Loading -->
+  <div *ngIf="carregando" class="loading">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Carregando suas músicas...</p>
+  </div>
+
+  <!-- Contador de músicas -->
+  <div class="music-count" *ngIf="!carregando && musicas.length > 0">
+    <p>{{ musicas.length }} música(s) na sua playlist</p>
+  </div>
+
+  <!-- Lista de músicas -->
+  <ion-list *ngIf="!carregando && musicas.length > 0">
+    <ion-item *ngFor="let musica of musicas" class="music-item">
+      <ion-label>
+        <h2>{{ musica.nome }}</h2>
+        <p><strong>Artista:</strong> {{ musica.artista }}</p>
+        <p><strong>Álbum:</strong> {{ musica.album }}</p>
+        <p><strong>Gênero:</strong> {{ musica.genero }} • <strong>Duração:</strong> {{ musica.duracao }}</p>
+      </ion-label>
+      
+      <ion-button fill="clear" color="primary" (click)="editarMusica(musica, $event)" title="Editar música">
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-button>
+      
+      <ion-button fill="clear" color="danger" (click)="excluirMusica(musica, $event)" title="Excluir música">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- Mensagem quando não há músicas -->
+  <div *ngIf="!carregando && musicas.length === 0" class="empty-state">
+    <ion-icon name="musical-notes-outline" class="empty-icon"></ion-icon>
+    <h3>Sua playlist está vazia</h3>
+    <p>Adicione sua primeira música clicando no botão acima</p>
+  </div>
+</ion-content>

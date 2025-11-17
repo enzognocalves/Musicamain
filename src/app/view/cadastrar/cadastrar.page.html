@@ -1,0 +1,104 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nova Música</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="limparFormulario()" fill="clear">
+        Limpar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <form (ngSubmit)="salvarMusica()" #musicaForm="ngForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Artista *</ion-label>
+        <ion-input 
+          type="text" 
+          [(ngModel)]="artista" 
+          name="artista" 
+          required
+          placeholder="Nome do artista ou banda"
+          autocomplete="off">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Nome da Música *</ion-label>
+        <ion-input 
+          type="text" 
+          [(ngModel)]="nome" 
+          name="nome" 
+          required
+          placeholder="Título da música"
+          autocomplete="off">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Duração *</ion-label>
+        <ion-input 
+          type="text" 
+          [(ngModel)]="duracao" 
+          name="duracao" 
+          required
+          placeholder="MM:SS (ex: 3:45)"
+          (input)="formatarDuracao($event)"
+          maxlength="5"
+          autocomplete="off">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Álbum *</ion-label>
+        <ion-input 
+          type="text" 
+          [(ngModel)]="album" 
+          name="album" 
+          required
+          placeholder="Nome do álbum"
+          autocomplete="off">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Gênero *</ion-label>
+        <ion-select 
+          [(ngModel)]="genero" 
+          name="genero" 
+          required
+          interface="action-sheet"
+          placeholder="Selecione um gênero">
+          <ion-select-option value="">Selecione um gênero</ion-select-option>
+          <ion-select-option *ngFor="let genero of generos" [value]="genero">
+            {{ genero }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button 
+        type="submit" 
+        expand="block" 
+        color="primary" 
+        [disabled]="!artista || !nome || !duracao || !album || !genero"
+        class="submit-button">
+        Salvar Música
+      </ion-button>
+      
+      <ion-button 
+        expand="block" 
+        color="medium" 
+        fill="outline" 
+        (click)="voltarParaHome()"
+        class="cancel-button">
+        Cancelar
+      </ion-button>
+    </div>
+  </form>
+</ion-content>
